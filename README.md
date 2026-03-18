@@ -1,6 +1,6 @@
 # stats220
 ## Project1
-This project was created for **Stats220** to explore R for *image processing*, meme creation, and web page development.
+This project was created for **Stats220** to explore R for *image processing*, *meme creation*, and *web page development*.
 
 ## Goals
 - Using R and 'magick' package for image processing
