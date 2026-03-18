@@ -1,17 +1,19 @@
 # stats220
 ## Project1
-This is a **data project** and it is *fun to learn*.
-- Using R for image processing
+This project was created for **Stats220** to explore R for *image processing*, meme creation, and web page development.
+
+## Goals
+- Using R and 'magick' package for image processing
 - Creating memes
 - Building HTML pages
 
 ## MY tasks
 1. Create a meme
-2. Create an animated meme
-3. Write a report
+2. Create an animated meme GIF
+3. Write a report in R Markdown
 
 ## Useful link
-[Go to google](https://www.google.com)
+[My GitHub Repository](https://github.com/xche12138/stats220)
 
 ## funny GIF
 ![via SpongeBob SquarePants on GIPHY](https://media4.giphy.com/media/jwxMFMf74yjaXX3AD9/source.gif)
