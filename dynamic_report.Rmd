@@ -91,5 +91,3 @@ The most common clothing style is `r most_common_style`, showing a dominant styl
 On average, people wear approximately `r round(mean_layers, 2)` upper-body layers.
 
 The maximum number of upper-body layers observed is `r max_layers`.
-
-![](https://c.tenor.com/-qBsG1HwR4oAAAAC/tenor.gif)
