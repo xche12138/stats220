@@ -1,0 +1,95 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ac6767
+}
+
+h2 {
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+## Tracking Clothing Patterns in Public Spaces
+
+This report is based on clothing observations collected in public spaces. The data is gathered using a Google Form and is automatically updated through Google Sheets.
+
+The dataset includes information on clothing type, style, and the number of upper-body layers worn. This report analyses these variables to explore common clothing habits and trends in public spaces.
+
+```{r}
+library(tidyverse)
+
+# Load data directly from Google Sheets (published as CSV)
+data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQSUyvHX8BS8gfAqPamvdmuIpN4_9LRPwhzbsrVw9yfXvovTytSyY1Rp8sfX1ep_F_sQd26VsTQK2Y5/pub?output=csv")
+
+data <- data %>%
+  rename(
+    clothing_type = contains("main type of clothing"),
+    layers = contains("upper-body layers"),
+    style = contains("describe")
+  )
+
+# Bar chart 1
+data %>%
+  ggplot() +
+  geom_bar(aes(x = clothing_type, fill = clothing_type)) +
+  labs(title = "Distribution of Clothing Types",
+       x = "Clothing type",
+       y = "Count")
+
+# Bar chart 2
+data %>%
+  ggplot() +
+  geom_bar(aes(x = style, fill = style)) +
+  labs(title = "Clothing Style Distribution",
+       x = "Style",
+       y = "Count")
+
+# Summary
+total_obs <- nrow(data)
+
+most_common_type <- data %>%
+  count(clothing_type) %>%
+  arrange(desc(n)) %>%
+  slice(1) %>%
+  pull(clothing_type)
+
+most_common_style <- data %>%
+  count(style) %>%
+  arrange(desc(n)) %>%
+  slice(1) %>%
+  pull(style)
+
+mean_layers <- data %>%
+  summarise(mean = mean(layers, na.rm = TRUE)) %>%
+  pull(mean)
+
+max_layers <- max(data$layers, na.rm = TRUE)
+```
+
+This dataset contains `r total_obs` observations collected from public spaces.
+
+The most commonly observed clothing type is `r most_common_type`, indicating it appears most frequently.
+
+The most common clothing style is `r most_common_style`, showing a dominant style trend.
+
+On average, people wear approximately `r round(mean_layers, 2)` upper-body layers.
+
+The maximum number of upper-body layers observed is `r max_layers`.
+
+![](https://c.tenor.com/-qBsG1HwR4oAAAAC/tenor.gif)
